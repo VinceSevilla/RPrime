@@ -52,6 +52,7 @@ const Rooms = ({ token }) => {
   const handleNavClick = (section) => {
     if (section === "Home") navigate("/homepage");
     else if (section === "Restaurant") navigate("/restaurants");
+    else if (section === "Events") navigate("/events");
     else alert(`Navigating to ${section}`);
   };
 
@@ -60,58 +61,57 @@ const Rooms = ({ token }) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <div className="flex flex-col min-h-screen">
       {/* Navbar */}
-      <nav className="flex flex-wrap justify-between items-center p-4 bg-gray-800 text-white fixed w-full z-10">
-        <div className="flex items-center">
-          <h2
-            className="text-xl font-bold cursor-pointer"
-            onClick={() => navigate("/homepage")}
-          >
-            RPrime
-          </h2>
-        </div>
+      <nav className="absolute top-0 left-0 w-full flex flex-wrap justify-between items-center px-5 py-4 bg-[#2c3e50] text-white z-10">
+        <h2
+          className="text-xl font-bold tracking-wide cursor-pointer"
+          onClick={() => navigate("/homepage")}
+        >
+          RPrime
+        </h2>
+
         <div className="flex flex-1 justify-center gap-6 flex-wrap">
           {["Home", "Restaurant", "Events"].map((item) => (
             <button
               key={item}
-              className="px-3 py-2 font-semibold rounded hover:bg-yellow-400 hover:text-black transition"
               onClick={() => handleNavClick(item)}
+              className="text-white font-semibold px-2 py-1 rounded hover:bg-yellow-400 hover:text-black transition"
             >
               {item}
             </button>
           ))}
         </div>
-        <div>
-          <button
-            className="bg-red-600 px-4 py-2 rounded font-semibold hover:bg-red-700 transition"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
+
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 px-3 py-2 rounded font-semibold hover:bg-red-700 transition"
+        >
+          Logout
+        </button>
       </nav>
 
       {/* Hero Section */}
       <header
-        className="relative flex justify-center items-center h-[90vh] bg-cover bg-center pt-20"
+        className="relative bg-cover bg-center h-[90vh] flex flex-col justify-center items-center text-center pt-20"
         style={{ backgroundImage: `url(${images.hotel1})` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 text-center max-w-3xl px-5 text-white">
-          <h1 className="text-5xl font-bold mb-4">Our Luxury Rooms</h1>
-          <p className="text-lg mb-6">
+
+        <div className="relative z-10 max-w-3xl px-4 text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-5">Our Luxury Rooms</h1>
+          <p className="text-lg md:text-xl mb-6 leading-relaxed">
             Choose the perfect stay that fits your comfort and budget.
           </p>
         </div>
       </header>
 
-      {/* Rooms List */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-5 py-16 bg-white justify-center">
+      {/* Rooms Section */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 py-16 bg-white">
         {rooms.map((room, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover:-translate-y-2 hover:shadow-2xl"
+            className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition"
           >
             <img
               src={room.img}
@@ -119,16 +119,18 @@ const Rooms = ({ token }) => {
               className="w-full h-60 object-cover"
             />
             <div className="p-5 text-center">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-lg font-bold text-[#2c3e50] mb-2">
                 {room.name}
               </h3>
-              <p className="text-gray-600 mb-3 text-sm">{room.desc}</p>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                {room.desc}
+              </p>
               <span className="block font-bold text-gray-800 mb-4">
                 {room.price}
               </span>
               <button
-                className="bg-yellow-400 hover:bg-yellow-500 px-6 py-3 rounded-lg font-bold transition shadow-md"
                 onClick={() => handleLearnMore(room.name)}
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded-lg shadow-lg transition"
               >
                 Book Now
               </button>
@@ -138,8 +140,27 @@ const Rooms = ({ token }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white text-center py-6 mt-auto">
-        <p>© 2025 RPrime | All Rights Reserved</p>
+      <footer className="bg-[#2c3e50] text-white px-5 py-10 mt-auto">
+        <div className="flex flex-wrap justify-center gap-6 mb-5">
+          <div className="min-w-[200px] text-left">
+            <h3 className="font-bold text-lg mb-2">Contact Us</h3>
+            <p>RPrime, 123 Luxury Ave, Metro City, Philippines</p>
+            <p>Email: info@rprime.com</p>
+            <p>Phone: +63 912 345 6789</p>
+          </div>
+          <div className="w-full max-w-[250px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.089762764651!2d121.03687281483917!3d14.5903838898499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b83e8d5e29b7%3A0x6e1a7e2c3a734bc5!2sManila%2C%20Metro%20Manila%2C%20Philippines!5e0!3m2!1sen!2sus!4v1693069210451!5m2!1sen!2sus"
+              width="100%"
+              height="150"
+              className="rounded"
+              allowFullScreen=""
+              loading="lazy"
+              title="rooms-location"
+            ></iframe>
+          </div>
+        </div>
+        <p className="text-center">© 2025 RPrime | All Rights Reserved</p>
       </footer>
     </div>
   );
