@@ -1,0 +1,371 @@
+/* Global */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Page Container */
+.restaurants-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #2c3e50;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.nav-left, .nav-center, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-center {
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.nav-btn:hover {
+  background: #f1c40f;
+  color: #000;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+/* Hero Section - same as Rooms */
+.restaurants-hero {
+  background-size: cover;
+  background-position: center;
+  height: 90vh; /* same as homepage/rooms */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+.restaurants-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.hero-overlay h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.hero-overlay p {
+  font-size: 20px;
+  color: #f0f0f0;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Restaurants List Grid */
+.restaurants-list {
+  display: grid;
+  grid-template-columns: repeat(3, 380px);
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 20px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .restaurants-list {
+    grid-template-columns: repeat(2, 320px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .restaurants-list {
+    grid-template-columns: 1fr;
+    padding: 40px 15px;
+  }
+}
+
+/* Restaurant Card */
+.restaurant-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  padding-bottom: 25px;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Restaurant Image */
+.restaurant-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.restaurant-card:hover .restaurant-img {
+  transform: scale(1.05);
+}
+
+/* Restaurant Title & Description */
+.restaurant-card h3 {
+  margin: 15px 0 12px 0;
+  font-size: 22px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.restaurant-card p {
+  padding: 0 20px 20px 20px;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* Learn More Button */
+.learn-btn {
+  background: #f1c40f;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.learn-btn:hover {
+  background: #d4ac0d;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 25px 15px;
+  background: #2c3e50;
+  color: white;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Restaurants.css";
+import images from "../../assets/images/images";
+
+const Restaurants = ({ token }) => {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    sessionStorage.removeItem("token");
+    navigate("/");
+  }
+
+  function handleNavClick(section) {
+    if (section === "Rooms") {
+      navigate("/rooms");
+      return;
+    }
+
+    if (section === "Home") {
+      navigate("/homepage");
+      return;
+    }
+
+    alert(`Navigating to ${section}`); // Replace with actual routing logic
+  }
+
+  function handleLearnMore(name) {
+    navigate(`/restaurants/${encodeURIComponent(name)}`);
+  }
+
+  const restaurants = [
+    {
+      name: "Skyline Dining",
+      img: images.restaurant1,
+      desc: `An extraordinary fine dining experience high above the city with panoramic skyline views. Enjoy a curated menu of international gourmet dishes prepared by world-class chefs. Perfect for romantic evenings, celebrations, or business dinners.`
+    },
+    {
+      name: "Sea Breeze Café",
+      img: images.restaurant2,
+      desc: `A serene seaside café where guests can relax to the sound of waves and ocean breeze. Featuring fresh seafood, tropical cocktails, and seasonal specialties in a casual yet elegant setting. Ideal for brunches, lunches, or sunset dinners.`
+    },
+    {
+      name: "Golden Dragon",
+      img: images.restaurant3,
+      desc: `Authentic Asian cuisine reimagined with modern presentation. From dim sum to stir-fried entrées, every dish balances flavor, aroma, and texture. A refined setting for both casual dining and special occasions.`
+    },
+    {
+      name: "Steakhouse Prime",
+      img: images.restaurant4,
+      desc: `The ultimate destination for steak lovers, offering premium cuts cooked to perfection. Rustic charm blends with modern elegance, complemented by a fine wine selection. Ideal for intimate dinners or celebrations.`
+    },
+    {
+      name: "Garden Bistro",
+      img: images.restaurant5,
+      desc: `A tranquil retreat surrounded by greenery, serving fresh farm-to-table cuisine. Seasonal ingredients and artisanal preparations highlight flavor and freshness. Perfect for brunch, lunch, or casual dinners.`
+    },
+    {
+      name: "Dessert Haven",
+      img: images.restaurant6,
+      desc: `A paradise for sweet lovers, offering artisanal cakes, pastries, and confections made fresh daily. Cozy décor and a charming atmosphere make it perfect for friends and families to indulge.`
+    }
+  ];
+
+  return (
+    <div className="restaurants-page">
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="nav-left">
+          <h2
+            className="logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/homepage")}
+          >
+            GrandLux Hotel
+          </h2>
+        </div>
+        <div className="nav-center">
+          {["Home", "Rooms", "Events"].map((item) => (
+            <button
+              key={item}
+              className="nav-btn"
+              onClick={() => handleNavClick(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        <div className="nav-right">
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <header
+        className="restaurants-hero"
+        style={{ backgroundImage: `url(${images.restaurant1})` }}
+      >
+        <div className="hero-overlay">
+          <h1>Our Restaurants</h1>
+          <p>
+            Enjoy world-class dining experiences — from casual cafés to fine
+            dining, each crafted to delight your senses.
+          </p>
+        </div>
+      </header>
+
+      {/* Restaurants List */}
+      <section className="restaurants-list">
+        {restaurants.map((rest, idx) => (
+          <div key={idx} className="restaurant-card">
+            <img src={rest.img} alt={rest.name} className="restaurant-img" />
+            <h3>{rest.name}</h3>
+            <p>{rest.desc}</p>
+            <button
+              className="learn-btn"
+              onClick={() => handleLearnMore(rest.name)}
+            >
+              Learn More
+            </button>
+          </div>
+        ))}
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <p>© 2025 GrandLux Hotel | All Rights Reserved</p>
+      </footer>
+    </div>
+  );
+};
+
+export default Restaurants;
+
