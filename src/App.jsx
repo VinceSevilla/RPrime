@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SignUp, Login, Homepage, Rooms, Restaurants, Book, RestaurantDetails, Reserve } from './pages'; // Import Book
+import { SignUp, Login, Homepage, Rooms, Restaurants, Book, RestaurantDetails, Reserve, Events } from './pages'; 
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './client';
 
@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/restaurants/:restaurantName" element={token ? <RestaurantDetails /> : <Login setToken={setToken} />} /> {/* NEW */}
         {/* Add the route for the reservation page */}
         <Route path="/reserve/:restaurantName" element={<Reserve />} />
+        <Route path="/events" element={token ? <Events /> : <Login setToken={setToken} />} />
       </Routes>
     </div>
   );

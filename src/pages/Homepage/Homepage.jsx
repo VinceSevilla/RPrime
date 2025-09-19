@@ -13,6 +13,7 @@ const Homepage = ({ token }) => {
   const handleNavClick = (section) => {
     if (section === "Rooms") navigate("/rooms");
     else if (section === "Restaurant") navigate("/restaurants");
+    else if (section === "Events") navigate("/events"); 
     else alert(`Navigating to ${section}`);
   };
 
