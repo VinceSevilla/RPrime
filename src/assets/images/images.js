@@ -13,6 +13,7 @@ import restaurant3 from './restaurant3.jpg';
 import restaurant4 from './restaurant4.jpg';
 import restaurant5 from './restaurant5.jpg';
 import restaurant6 from './restaurant6.jpg';
+import food1 from './food1.jpg';
     
 const images = { 
     dining1, 
@@ -29,6 +30,7 @@ const images = {
     restaurant3, 
     restaurant4, 
     restaurant5, 
-    restaurant6 };
+    restaurant6,
+    food1};
     
 export default images;

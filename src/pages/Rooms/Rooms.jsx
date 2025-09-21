@@ -93,12 +93,12 @@ const Rooms = ({ token }) => {
 
       {/* Hero Section */}
       <header
-        className="relative bg-cover bg-center h-[90vh] flex flex-col justify-center items-center text-center pt-20"
-        style={{ backgroundImage: `url(${images.hotel1})` }}
+        className="relative bg-cover bg-center h-[60vh] flex flex-col justify-center items-center text-center pt-20"
+        style={{ backgroundImage: `url(${images.Presidential})` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="relative z-10 max-w-3xl px-4 text-white">
+        <div className="relative z-10 max-w-2xl px-4 text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-5">Our Luxury Rooms</h1>
           <p className="text-lg md:text-xl mb-6 leading-relaxed">
             Choose the perfect stay that fits your comfort and budget.
@@ -107,36 +107,40 @@ const Rooms = ({ token }) => {
       </header>
 
       {/* Rooms Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 py-16 bg-white">
-        {rooms.map((room, idx) => (
-          <div
-            key={idx}
-            className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition"
-          >
-            <img
-              src={room.img}
-              alt={room.name}
-              className="w-full h-60 object-cover"
-            />
-            <div className="p-5 text-center">
-              <h3 className="text-lg font-bold text-[#2c3e50] mb-2">
-                {room.name}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                {room.desc}
-              </p>
-              <span className="block font-bold text-gray-800 mb-4">
-                {room.price}
-              </span>
-              <button
-                onClick={() => handleLearnMore(room.name)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded-lg shadow-lg transition"
-              >
-                Book Now
-              </button>
+      <section className="flex justify-center px-5 py-16 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl w-full">
+          {rooms.map((room, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition w-full"
+            >
+              <img
+                src={room.img}
+                alt={room.name}
+                className="w-full h-60 object-cover"
+              />
+              <div className="p-6 text-justify">
+                <h3 className="text-xl font-bold text-[#2c3e50] mb-3 text-center">
+                  {room.name}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  {room.desc}
+                </p>
+                <span className="block font-bold text-gray-800 mb-4 text-center">
+                  {room.price}
+                </span>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => handleLearnMore(room.name)}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-lg shadow-lg transition"
+                  >
+                    Book Now
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       {/* Footer */}

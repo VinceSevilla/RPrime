@@ -87,50 +87,52 @@ const Restaurants = ({ token }) => {
 
       {/* Hero Section */}
       <header
-        className="relative bg-cover bg-center h-[90vh] flex flex-col justify-center items-center text-center pt-20"
-        style={{ backgroundImage: `url(${images.restaurant1})` }}
+        className="relative bg-cover bg-center h-[60vh] flex flex-col justify-center items-center text-center pt-20"
+        style={{ backgroundImage: `url(${images.food1})` }}  
       >
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="relative z-10 max-w-3xl px-4 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-5">
-            Our Restaurants
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-5">Our Restaurants</h1>
           <p className="text-lg md:text-xl mb-6 leading-relaxed">
-            Enjoy world-class dining experiences — from casual cafés to fine
-            dining, each crafted to delight your senses.
+            Enjoy world-class dining experiences — from casual cafés to fine dining,
+            each crafted to delight your senses.
           </p>
         </div>
       </header>
 
       {/* Restaurants Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 py-16 bg-white">
-        {restaurants.map((rest, idx) => (
-          <div
-            key={idx}
-            className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition"
-          >
-            <img
-              src={rest.img}
-              alt={rest.name}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-5 text-center">
-              <h3 className="text-lg font-bold text-[#2c3e50] mb-2">
-                {rest.name}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                {rest.desc}
-              </p>
-              <button
-                onClick={() => handleLearnMore(rest.name)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded-lg shadow-lg transition"
-              >
-                Learn More
-              </button>
+      <section className="flex justify-center px-5 py-16 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl w-full">
+          {restaurants.map((rest, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition w-full"
+            >
+              <img
+                src={rest.img}
+                alt={rest.name}
+                className="w-full h-60 object-cover"
+              />
+              <div className="p-6 text-justify">
+                <h3 className="text-xl font-bold text-[#2c3e50] mb-3 text-center">
+                  {rest.name}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  {rest.desc}
+                </p>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => handleLearnMore(rest.name)}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-lg shadow-lg transition"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       {/* Footer */}

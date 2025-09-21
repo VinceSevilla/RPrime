@@ -54,7 +54,7 @@ const Homepage = ({ token }) => {
 
       {/* Hero Section */}
       <header
-        className="relative bg-cover bg-center h-[90vh] flex flex-col justify-center items-center text-center pt-20"
+        className="relative bg-cover bg-center h-[60vh] flex flex-col justify-center items-center text-center pt-20"
         style={{ backgroundImage: `url(${images.hotel1})` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
