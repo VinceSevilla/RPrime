@@ -9,5 +9,13 @@ import Reserve from "./Reserve/Reserve";
 import Events from "./Events/Events";
 
 export {
-    Login, SignUp, Homepage, Rooms, Restaurants, Book, RestaurantDetails, Reserve, Events
+    Login, 
+    SignUp, 
+    Homepage, 
+    Rooms, 
+    Restaurants, 
+    Book, 
+    RestaurantDetails, 
+    Reserve, 
+    Events
 }

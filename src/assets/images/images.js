@@ -14,5 +14,21 @@ import restaurant4 from './restaurant4.jpg';
 import restaurant5 from './restaurant5.jpg';
 import restaurant6 from './restaurant6.jpg';
     
-const images = { dining1, hotel1, room1, service1, Premier, Presidential, Sea, Garden, Deluxe, restaurant1, restaurant2, restaurant3, restaurant4, restaurant5, restaurant6 };
+const images = { 
+    dining1, 
+    hotel1, 
+    room1, 
+    service1, 
+    Premier, 
+    Presidential, 
+    Sea, 
+    Garden, 
+    Deluxe, 
+    restaurant1, 
+    restaurant2, 
+    restaurant3, 
+    restaurant4, 
+    restaurant5, 
+    restaurant6 };
+    
 export default images;
