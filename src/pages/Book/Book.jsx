@@ -56,7 +56,7 @@ const Book = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold text-blue-500 mb-5">Booking Confirmed!</h2>
             <p className="text-lg text-gray-700 mb-5">
-              Thank you for booking with us. Your stay at the <span className="font-semibold">{roomName}</span> is confirmed. Enjoy!
+              Thank you for booking with us. Your stay at the <span className="font-semibold">{roomName}</span> is confirmed.
             </p>
             <button
               onClick={handleReturnHome}
