@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../../client';
 import { Link, useNavigate } from 'react-router-dom';
+import images from '../../assets/images/images';
 
 const Login = ({ setToken }) => {
   const navigate = useNavigate();
@@ -53,58 +54,84 @@ const Login = ({ setToken }) => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login to Your Account
-        </h2>
-
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-[#f1f4f8] via-[#e6ecf3] to-[#f1f4f8]">
+      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-3xl shadow-2xl bg-white/90 backdrop-blur border border-slate-200">
+        <div className="relative hidden md:flex items-center justify-center bg-gradient-to-br from-[#2c3e50] via-slate-800 to-[#111827] p-10 overflow-hidden">
+          <img
+            src={images.hotel1}
+            alt="RPrime hotel"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
           />
+        </div>
 
-          <input
-            placeholder="Password"
-            name="password"
-            type="password"
-            onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
+        <div className="p-8 md:p-12 flex flex-col justify-center bg-white">
+          <div className="mx-auto w-full max-w-sm">
+            <h1 className="text-3xl font-bold text-slate-900 text-center mb-8">Sign in</h1>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-          >
-            Login
-          </button>
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-slate-600">
+                  Email address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/30 focus:border-[#2c3e50] transition"
+                />
+              </div>
 
-          {/* Google Login Button */}
-          <button
-            type="button"
-            onClick={handleGoogleLogin}
-            className="w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition"
-          >
-            Continue with Google
-          </button>
-        </form>
+              <div className="space-y-2">
+                <label htmlFor="password" className="text-sm font-medium text-slate-600">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/30 focus:border-[#2c3e50] transition"
+                />
+              </div>
 
-        <p className="mt-6 text-center text-gray-600">
-          Don&apos;t have an account?{' '}
-          <Link
-            to="/signup"
-            className="text-blue-600 hover:underline font-medium"
-          >
-            Sign Up
-          </Link>
-        </p>
+              <button
+                type="submit"
+                className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#2c3e50] to-[#1b2733] shadow-lg shadow-[#2c3e50]/30 hover:from-[#1b2733] hover:to-[#16202a] transition"
+              >
+                Login
+              </button>
+            </form>
+
+            <div className="my-6">
+              <span className="block h-px bg-slate-200"></span>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-transparent bg-[#ea4335] text-white font-semibold shadow-sm shadow-red-200/60 hover:bg-[#d33527] transition"
+            >
+              Continue with Google
+            </button>
+
+            <p className="mt-8 text-center text-sm text-slate-500">
+              Need an account?{' '}
+              <Link
+                to="/signup"
+                className="font-semibold text-[#2c3e50] hover:text-[#1b2733]"
+              >
+                Create one
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
