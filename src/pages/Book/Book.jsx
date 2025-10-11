@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../client';
+import images from '../../assets/images/images';
 
 const Book = () => {
   const { roomName } = useParams();
@@ -12,6 +13,19 @@ const Book = () => {
     checkOut: '',
   });
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+
+  const decodedRoomName = roomName ? decodeURIComponent(roomName) : '';
+
+  const roomVisuals = {
+    'Deluxe Room': images.room1,
+    'Premier Room': images.Premier,
+    'Presidential Suite': images.Presidential,
+    'Premier Deluxe': images.Deluxe,
+    'Family Suite': images.Sea,
+    'Honeymoon Suite': images.Garden,
+  };
+
+  const selectedRoomImage = roomVisuals[decodedRoomName] || images.hotel1;
 
   useEffect(() => {
     console.log('Room Name:', roomName);
@@ -32,7 +46,7 @@ const Book = () => {
         {
           name: formData.name,
           email: formData.email,
-          room_name: roomName,
+          room_name: decodedRoomName || roomName,
           check_in: formData.checkIn,
           check_out: formData.checkOut,
         },
@@ -50,101 +64,125 @@ const Book = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 p-5">
-      <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-8 flex flex-col justify-center transition-all">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#f4f5fb] via-white to-[#eef2f6] flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-5xl rounded-3xl border border-slate-200/60 bg-white/85 backdrop-blur shadow-xl shadow-slate-200">
         {bookingConfirmed ? (
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-blue-500 mb-5">Booking Confirmed!</h2>
-            <p className="text-lg text-gray-700 mb-5">
-              Thank you for booking with us. Your stay at the <span className="font-semibold">{roomName}</span> is confirmed.
-            </p>
+          <div className="flex flex-col items-center gap-6 px-8 py-16 text-center">
+            <div className="rounded-full bg-emerald-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-700">
+              Confirmed
+            </div>
+            <h2 className="text-3xl font-bold text-slate-900">
+              Stay confirmed at <span className="text-[#2c3e50]">{decodedRoomName || roomName}</span>
+            </h2>
             <button
               onClick={handleReturnHome}
-              className="px-6 py-3 text-lg font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+              className="inline-flex items-center justify-center rounded-2xl bg-[#2c3e50] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#2c3e50]/30 transition hover:bg-[#1b2733]"
             >
-              Return to Homepage
+              Return to homepage
             </button>
           </div>
         ) : (
-          <div>
-            <h2 className="text-2xl font-bold text-center text-blue-500 mb-6">
-              Book Your Stay at {roomName}
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="flex flex-col">
-                <label htmlFor="name" className="text-gray-700 font-semibold mb-2">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your full name"
-                  required
-                  className="px-4 py-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
-                />
-              </div>
+          <div className="grid gap-10 px-6 py-10 items-center md:grid-cols-2 md:px-12 md:py-14">
+            <figure className="relative overflow-hidden rounded-3xl bg-[#2c3e50]/5 shadow-lg ring-1 ring-[#2c3e50]/10">
+              <img
+                src={selectedRoomImage}
+                alt={decodedRoomName || 'Selected room'}
+                className="h-80 w-full object-cover md:h-[32rem]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#2c3e50]/15 via-transparent to-[#2c3e50]/40" />
+            </figure>
 
-              <div className="flex flex-col">
-                <label htmlFor="email" className="text-gray-700 font-semibold mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email address"
-                  required
-                  className="px-4 py-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
-                />
-              </div>
+            <div className="space-y-8">
+              <header className="space-y-3 text-center md:text-left">
+                <span className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#2c3e50]">
+                  Booking
+                </span>
+                <h1 className="text-3xl font-bold text-slate-900">Reserve your stay at {decodedRoomName || roomName}</h1>
+                <p className="text-sm text-slate-500">
+                  Complete the details below and we&apos;ll lock in your dates instantly.
+                </p>
+              </header>
 
-              <div className="flex flex-col">
-                <label htmlFor="checkIn" className="text-gray-700 font-semibold mb-2">
-                  Check-in Date
-                </label>
-                <input
-                  type="date"
-                  id="checkIn"
-                  name="checkIn"
-                  value={formData.checkIn}
-                  onChange={handleChange}
-                  required
-                  className="px-4 py-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-5">
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        Guest name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm transition focus:border-[#2c3e50] focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/15"
+                      />
+                    </div>
 
-              <div className="flex flex-col">
-                <label htmlFor="checkOut" className="text-gray-700 font-semibold mb-2">
-                  Check-out Date
-                </label>
-                <input
-                  type="date"
-                  id="checkOut"
-                  name="checkOut"
-                  value={formData.checkOut}
-                  onChange={handleChange}
-                  required
-                  className="px-4 py-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
-                />
-              </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        Email address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm transition focus:border-[#2c3e50] focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/15"
+                      />
+                    </div>
+                  </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 text-lg font-bold text-white bg-gradient-to-br from-blue-500 to-blue-400 rounded-lg hover:from-blue-600 hover:to-blue-500 transition-all"
-              >
-                Confirm Booking
-              </button>
-            </form>
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="checkIn" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        Check-in date
+                      </label>
+                      <input
+                        type="date"
+                        id="checkIn"
+                        name="checkIn"
+                        value={formData.checkIn}
+                        onChange={handleChange}
+                        required
+                        className="w-full cursor-pointer rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm transition focus:border-[#2c3e50] focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/20 hover:border-[#2c3e50]"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="checkOut" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        Check-out date
+                      </label>
+                      <input
+                        type="date"
+                        id="checkOut"
+                        name="checkOut"
+                        value={formData.checkOut}
+                        onChange={handleChange}
+                        required
+                        className="w-full cursor-pointer rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm transition focus:border-[#2c3e50] focus:outline-none focus:ring-4 focus:ring-[#2c3e50]/20 hover:border-[#2c3e50]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl bg-[#2c3e50] px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-lg shadow-[#2c3e50]/30 transition hover:bg-[#1b2733]"
+                >
+                  Confirm booking
+                </button>
+              </form>
+            </div>
           </div>
         )}
       </div>
     </div>
   );
-};
+}
 
 export default Book;
