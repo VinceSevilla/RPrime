@@ -10,23 +10,20 @@ const Event = ({ token }) => {
   const events = [
     {
       id: 1,
-      title: "Summer Music Festival",
-      date: "September 25, 2025",
-      description: "Enjoy live performances by top artists and DJs in a vibrant atmosphere.",
+      title: "Ballroom",
+      description: "Elegant ballroom venue perfect for formal gatherings, corporate functions, and special celebrations. Features sophisticated décor, spacious layout, and premium amenities for memorable events.",
       image: images.event1,
     },
     {
       id: 2,
-      title: "Wine & Dine Evening",
-      date: "October 10, 2025",
-      description: "Experience a curated evening of fine wines paired with gourmet dishes.",
+      title: "Conference Meeting",
+      description: "Modern conference facilities equipped with state-of-the-art technology for business meetings and corporate events. Offers flexible spaces, audiovisual equipment, and professional catering services.",
       image: images.event2,
     },
     {
       id: 3,
-      title: "Spa & Wellness Retreat",
-      date: "November 5, 2025",
-      description: "Relax and rejuvenate with our premium spa treatments and wellness programs.",
+      title: "Wedding",
+      description: "Beautiful wedding venues with comprehensive planning services for your perfect day. Provides stunning settings, customizable packages, and dedicated coordinators to ensure your dream wedding becomes reality.",
       image: images.event3,
     },
   ];
@@ -38,7 +35,7 @@ const Event = ({ token }) => {
       {/* Hero Section */}
       <header
         className="relative bg-cover bg-center h-[50vh] flex flex-col justify-center items-center text-center"
-        style={{ backgroundImage: `url(${images.hotel1})` }}
+        style={{ backgroundImage: `url(${images.event1})` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <h1 className="relative z-10 text-4xl md:text-5xl font-bold text-white animate-fadeIn">
@@ -47,20 +44,25 @@ const Event = ({ token }) => {
       </header>
 
       {/* Events Section */}
-      <section className="flex flex-wrap justify-center gap-6 px-5 py-16">
-        {events.map((event) => (
-          <div
-            key={event.id}
-            className="max-w-xs bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition"
-          >
-            <img src={event.image} alt={event.title} className="w-full h-44 object-cover" />
-            <div className="p-4">
-              <h3 className="text-lg font-bold text-[#2c3e50] mb-2">{event.title}</h3>
-              <p className="text-sm text-gray-500 mb-2">{event.date}</p>
-              <p className="text-sm text-gray-600 leading-relaxed">{event.description}</p>
+      <section className="flex justify-center px-5 py-16 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl w-full">
+          {events.map((event) => (
+            <div
+              key={event.id}
+              className="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition w-full"
+            >
+              <img src={event.image} alt={event.title} className="w-full h-60 object-cover" />
+              <div className="p-6 text-justify">
+                <h3 className="text-xl font-bold text-[#2c3e50] mb-3 text-center">
+                  {event.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {event.description}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <Footer />
