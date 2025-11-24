@@ -1,7 +1,6 @@
 import dining1 from './dining1.jpg';
 import hotel1 from './hotel1.jpg';
 import room1 from './room1.jpg';
-import service1 from './service1.jpg';
 import Premier from './Premier.jpg';
 import Presidential from './Presidential.jpg';
 import Sea from './Sea.jpg';
@@ -22,7 +21,6 @@ const images = {
     dining1, 
     hotel1, 
     room1, 
-    service1, 
     Premier, 
     Presidential, 
     Sea, 
