@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SignUp, Login, Homepage, Rooms, Restaurants, Book, RestaurantDetails, Reserve, Events } from './pages'; 
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './client';
+import Analytics from './Analytics';
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -28,6 +29,7 @@ const App = () => {
 
   return (
     <div>
+      <Analytics />
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Login setToken={setToken} />} />
