@@ -4,7 +4,7 @@ import images from '../../assets/images/images';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const Event = ({ token }) => {
+const Events = () => {
   const navigate = useNavigate();
 
   const events = [
@@ -70,4 +70,4 @@ const Event = ({ token }) => {
   );
 };
 
-export default Event;
+export default Events;

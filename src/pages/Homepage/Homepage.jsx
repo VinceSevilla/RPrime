@@ -4,7 +4,7 @@ import images from '../../assets/images/images';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const Homepage = ({ token }) => {
+const Homepage = () => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -24,7 +24,7 @@ const Homepage = ({ token }) => {
 
         <div className="relative z-10 max-w-3xl px-4 text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-5">
-            Welcome, {token.user.user_metadata.full_name}
+            Welcome to RPrime
           </h1>
           <p className="text-lg md:text-xl mb-6 leading-relaxed">
             Experience unparalleled luxury and comfort at RPrime. Enjoy elegantly designed rooms, world-class dining, rejuvenating spa treatments, and exceptional services that create memorable stays.
@@ -61,7 +61,7 @@ const Homepage = ({ token }) => {
         </div>
 
         <div className="max-w-xs bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition">
-          <img src={images.service1} alt="Spa & Wellness" className="w-full h-44 object-cover" />
+          <img src={images.dining1} alt="Spa & Wellness" className="w-full h-44 object-cover" />
           <div className="p-4 text-center">
             <h3 className="text-lg font-bold text-[#2c3e50] mb-2">Spa & Wellness</h3>
             <p className="text-sm text-gray-600 leading-relaxed">

@@ -4,7 +4,7 @@ import images from "../../assets/images/images";
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const Rooms = ({ token }) => {
+const Rooms = () => {
   const navigate = useNavigate();
 
   const rooms = [

@@ -11,8 +11,6 @@ const restaurantData = [
     dressCode: "Smart Casual",
     diningType: "Fine Dining",
     location: "15th Floor, RPrime, Downtown",
-    menuLink:
-      "https://www.grandluxcafe.com/Assets/PDF/GLC_LV_PAL_0520_Takeout.pdf",
   },
   {
     name: "Sea Breeze Café",
@@ -22,8 +20,6 @@ const restaurantData = [
     dressCode: "Casual",
     diningType: "Casual Dining",
     location: "Beachfront, RPrime",
-    menuLink:
-      "https://mandalaybay.mgmresorts.com/en/restaurants/seabreeze-cafe.html",
   },
   {
     name: "Golden Dragon",
@@ -33,8 +29,6 @@ const restaurantData = [
     dressCode: "Smart Casual",
     diningType: "Asian Cuisine",
     location: "2nd Floor, RPrime",
-    menuLink:
-      "https://www.grand-hotel.org/EN/official/restaurant-detail.aspx?gh=TP&serno=2",
   },
   {
     name: "Steakhouse Prime",
@@ -44,7 +38,6 @@ const restaurantData = [
     dressCode: "Formal",
     diningType: "Steakhouse",
     location: "Lobby Level, RPrime",
-    menuLink: "https://www.primestkhouse.com/menu",
   },
   {
     name: "Garden Bistro",
@@ -54,8 +47,6 @@ const restaurantData = [
     dressCode: "Casual",
     diningType: "Bistro / Farm-to-Table",
     location: "Rooftop Garden, RPrime",
-    menuLink:
-      "https://www.grandluxcafe.com/Assets/PDF/GLC_NY_0520_Takeout.pdf",
   },
   {
     name: "Dessert Haven",
@@ -65,7 +56,6 @@ const restaurantData = [
     dressCode: "Casual",
     diningType: "Café / Dessert",
     location: "Ground Floor, RPrime",
-    menuLink: "https://www.grandluxcafe.com/menus/desserts/",
   },
 ];
 
@@ -113,17 +103,6 @@ const RestaurantDetails = () => {
           </p>
           <p>
             <span className="font-semibold">Location:</span> {restaurant.location}
-          </p>
-          <p>
-            <span className="font-semibold">Menu:</span>{" "}
-            <a
-              href={restaurant.menuLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              View Menu
-            </a>
           </p>
         </div>
 
